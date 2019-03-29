@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@drawable/hedar_1">
+
+        <Button
+            android:id="@+id/btnMenu"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/_1sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:background="@drawable/menu_btn_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:text="EXAM SYLLABUS"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/linearBack"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true">
+
+            <Button
+                android:id="@+id/btnBackUnitTest"
+                android:layout_width="@dimen/_13sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/back_btn" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/exam_spinner"
+            android:layout_width="@dimen/_190sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:layout_marginLeft="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:background="@drawable/dropdown_button"
+            android:forceHasOverlappingRendering="false"
+            android:gravity="left|center_vertical"
+            android:overlapAnchor="false"
+            android:paddingBottom="1dp"
+            android:paddingTop="@dimen/_3sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtNoRecordsUnitTest"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/norecordfound"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ExpandableListView
+        android:id="@+id/lvExpUnitTest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_5sdp"
+        android:childDivider="@android:color/transparent"
+        android:divider="@android:color/white"
+        android:dividerHeight="@dimen/_5sdp"
+        android:groupIndicator="@null"
+        android:scrollbars="none" />
+
+</LinearLayout>

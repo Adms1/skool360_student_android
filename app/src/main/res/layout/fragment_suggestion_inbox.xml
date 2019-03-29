@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/txtNoRecordsinbox"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:background="@drawable/norecordfound"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_60sdp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/inbox_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:background="@drawable/shadow_box"
+            android:visibility="gone">
+
+            <include layout="@layout/inbox_header" />
+        </LinearLayout>
+
+        <ExpandableListView
+            android:id="@+id/lvExpinbox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/inbox_header"
+            android:childDivider="@android:color/transparent"
+            android:divider="@android:color/white"
+            android:dividerHeight="@dimen/_5sdp"
+            android:groupIndicator="@null"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:scrollbars="none" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "1071538701368",
+    "firebase_url": "https://newchatdemo-5eacd.firebaseio.com",
+    "project_id": "newchatdemo-5eacd",
+    "storage_bucket": "newchatdemo-5eacd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071538701368:android:23986fbc1bde06e7",
+        "android_client_info": {
+          "package_name": "com.example.admsandroid.newchatdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071538701368-qgp920kvaa0tu68ejcku7qbfoelc5sfb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.admsandroid.newchatdemo",
+            "certificate_hash": "dfddf81d1fba4306d39225f53928e13c3ffa8c06"
+          }
+        },
+        {
+          "client_id": "1071538701368-bfr4okujdtei24lmk5grcrrc0o0m25uc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7TBcqKyW0J0C6tH3jolkEW3GGe1Zg20g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071538701368-bfr4okujdtei24lmk5grcrrc0o0m25uc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071538701368:android:0dc0fcacb558be4b",
+        "android_client_info": {
+          "package_name": "com.anandniketanbhadaj.skool360student"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071538701368-bfr4okujdtei24lmk5grcrrc0o0m25uc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7TBcqKyW0J0C6tH3jolkEW3GGe1Zg20g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

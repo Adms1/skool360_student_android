@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/txtLecture"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/txtSubject"
+        android:gravity="center"
+        android:layout_alignTop="@+id/txtSubject"
+        android:layout_alignBottom="@+id/txtSubject"
+        android:textColor="@color/black"
+        android:background="@color/linearbg"
+        android:text="Lecture 1" />
+    <!--android:background="#f8fcfe"-->
+    <TextView
+        android:id="@+id/txtSubject"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_10sdp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:padding="@dimen/_5sdp"
+        android:background="@color/linearbg"
+        android:text="Subject" />
+
+    <TextView
+        android:id="@+id/txtTeacher"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_10sdp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:background="@color/linearbg"
+        android:layout_toRightOf="@+id/txtSubject"
+        android:layout_alignTop="@+id/txtSubject"
+        android:layout_alignBottom="@+id/txtSubject"
+        android:layout_weight="1"
+        android:padding="@dimen/_5sdp"
+        android:text="Siddharth Karnik" />
+
+</android.support.v7.widget.LinearLayoutCompat>

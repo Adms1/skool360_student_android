@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg_1"
+    android:gravity="center"
+    android:weightSum="1"
+    android:orientation="vertical"
+    tools:context=".Activities.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical|center"
+        android:padding="20dp">
+
+        <ImageView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/skool_360" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOG IN "
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TO EXISTING ACCOUNT"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#e6e7eb"
+                android:hint="User Name"
+                android:padding="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_12sdp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#e6e7eb"
+                    android:hint="Password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_12sdp" />
+
+                <CheckBox
+                    android:id="@+id/chPass"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/icon_showpass_h"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/chkRemember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remember Credentials"
+            android:textColor="@color/design_change_d2"
+            android:textSize="@dimen/_11sdp"
+            android:padding="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:button="@drawable/check_uncheck"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@android:color/holo_green_light"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="LOG IN"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/forgot_title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot Id / Password ?"
+            android:layout_margin="@dimen/_5sdp"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/_11sdp" />
+    </LinearLayout>
+
+
+</LinearLayout>

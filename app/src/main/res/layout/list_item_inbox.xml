@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_2sdp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/row_shape"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+            <!--<TextView-->
+                <!--android:id="@+id/txtreply_view"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight=".7"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:gravity="center"-->
+                <!--android:paddingLeft="@dimen/_5sdp"-->
+                <!--android:paddingRight="@dimen/_5sdp"-->
+                <!--android:paddingTop="@dimen/_5sdp"-->
+                <!--android:text="Reply"-->
+                <!--android:textAlignment="textStart"-->
+                <!--android:textColor="@color/blue"-->
+                <!--android:textSize="@dimen/_10sdp"-->
+                <!--android:textStyle="normal"-->
+                <!--android:visibility="visible" />-->
+                <!--<TextView-->
+                    <!--android:id="@+id/txt_dot"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text=":"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/blue"-->
+                    <!--android:textSize="@dimen/_11sdp"-->
+                    <!--android:textStyle="normal" />-->
+            <TextView
+                android:id="@+id/txtreply"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="Reply"
+                android:textAlignment="textStart"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="normal"
+                android:visibility="visible" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+            <!--<TextView-->
+                <!--android:id="@+id/txtsuggestion_view"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.7"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:gravity="center"-->
+                <!--android:paddingLeft="@dimen/_5sdp"-->
+                <!--android:paddingRight="@dimen/_5sdp"-->
+                <!--android:paddingTop="@dimen/_5sdp"-->
+                <!--android:text="Suggestion"-->
+                <!--android:textAlignment="textStart"-->
+                <!--android:textColor="@color/blue"-->
+                <!--android:textSize="@dimen/_10sdp"-->
+                <!--android:textStyle="normal" />-->
+                <!--<TextView-->
+                    <!--android:id="@+id/txt_dot1"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.1"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text=":"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/blue"-->
+                    <!--android:textSize="@dimen/_11sdp"-->
+                    <!--android:textStyle="normal" />-->
+            <TextView
+                android:id="@+id/txtsuggestion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="start|center_vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:text="Suggestion"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <!--<TextView-->
+                <!--android:id="@+id/txtsuggestion_view"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.7"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:gravity="center"-->
+                <!--android:paddingLeft="@dimen/_5sdp"-->
+                <!--android:paddingRight="@dimen/_5sdp"-->
+                <!--android:paddingTop="@dimen/_5sdp"-->
+                <!--android:text="Suggestion"-->
+                <!--android:textAlignment="textStart"-->
+                <!--android:textColor="@color/blue"-->
+                <!--android:textSize="@dimen/_10sdp"-->
+                <!--android:textStyle="normal" />-->
+                <!--<TextView-->
+                <!--android:id="@+id/txt_dot1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.1"-->
+                <!--android:gravity="center"-->
+                <!--android:text=":"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/blue"-->
+                <!--android:textSize="@dimen/_11sdp"-->
+                <!--android:textStyle="normal" />-->
+                <TextView
+                    android:id="@+id/txtsuggestiondate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:text="11 aug 2018"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

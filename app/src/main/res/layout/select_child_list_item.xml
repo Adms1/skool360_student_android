@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/select_child_mainll"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/_20sdp"
+    android:paddingRight="@dimen/_20sdp"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/select_child_list_profile_right"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/profile_pic_holder"
+        app:civ_border_color="@color/light_blue"
+        app:civ_border_width="@dimen/_2sdp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/select_child_list_profile_left"
+        android:layout_below="@+id/select_child_list_profile_right"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:src="@drawable/profile_pic_holder"
+        app:civ_border_color="@color/light_blue"
+        app:civ_border_width="@dimen/_2sdp" />
+
+    <LinearLayout
+        android:id="@+id/select_childe_detail_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/sibling1"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_5sdp"
+        android:layout_toLeftOf="@+id/select_child_list_profile_right"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/select_child_name_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="22"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/select_child_grade_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/select_Child_detail_right"
+        android:layout_below="@+id/select_child_list_profile_right"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/sibling2"
+        android:paddingBottom="@dimen/_5sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingRight="@dimen/_5sdp"
+        android:paddingLeft="@dimen/_40sdp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/select_child_list_profile_left"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/select_child_name_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:maxLength="21"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/select_child_grade_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

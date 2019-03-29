@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@drawable/hedar_1">
+
+        <Button
+            android:id="@+id/btnMenu"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/_1sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:background="@drawable/menu_btn_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:text="HOME WORK"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/linearBack"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true">
+
+            <Button
+                android:id="@+id/btnBackHomework"
+                android:layout_width="@dimen/_13sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/back_btn" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/fromDate"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/gray_border"
+            android:gravity="center_vertical"
+            android:hint="DD/MM/YYYY"
+            android:padding="@dimen/_5sdp"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textSize="@dimen/_12sdp" />
+
+        <TextView
+            android:id="@+id/toDate"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/fromDate"
+            android:background="@drawable/gray_border"
+            android:gravity="center_vertical"
+            android:hint="DD/MM/YYYY"
+            android:padding="@dimen/_5sdp"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textSize="@dimen/_12sdp" />
+
+        <Button
+            android:id="@+id/btnFilterHomework"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_alignBottom="@+id/toDate"
+            android:layout_alignTop="@+id/toDate"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/toDate"
+            android:background="@drawable/profile_button"
+            android:padding="@dimen/_4sdp"
+            android:text="Filter"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtNoRecordsHomework"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/norecordfound"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ExpandableListView
+        android:id="@+id/lvExpHomework"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:childDivider="@android:color/transparent"
+        android:divider="@android:color/white"
+        android:dividerHeight="@dimen/_5sdp"
+        android:groupIndicator="@null" />
+
+</LinearLayout>

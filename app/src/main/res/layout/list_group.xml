@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/_30sdp"
+    android:orientation="horizontal"
+    android:padding="@dimen/_4sdp"
+    android:background="@color/gray">
+
+    <TextView
+        android:id="@+id/lblListHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/_12sdp"
+        android:layout_gravity="center_vertical"
+        android:gravity="left"
+        android:singleLine="true"
+        android:text="Application - home Science"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

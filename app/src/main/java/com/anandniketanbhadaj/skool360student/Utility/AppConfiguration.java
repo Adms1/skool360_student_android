@@ -8,10 +8,10 @@ import com.anandniketanbhadaj.skool360student.Activities.MyApp;
 public class AppConfiguration {
 
     //Local
-    public static String DOMAIN_LOCAL = "http://192.168.1.22:8089/MobileApp_Service.asmx/";
-//    public static String GET_API_URL = "http://anandniketanbhadaj.org/appService/5b9a72856992e144c74fc836ed6e76a2/appsUrl";
+    public static String DOMAIN_LOCAL = "http://192.168.1.13:8089/MobileApp_Service.asmx/";
+    public static String GET_API_URL = "http://anandniketanbhadaj.org/appService/5b9a72856992e144c74fc836ed6e76a2/appsUrl";
 
-    public static String LIVE_BASE_URL = "http://admin.skool360.com/";
+    public static String LIVE_BASE_URL = "http://192.168.1.13:8089/";
 
     // public static String DOMAIN_LIVE = "http://192.168.1.11:8086/MobileApp_Service.asmx/";//use for office only
 //   public static String DOMAIN_LIVE = "http://192.168.1.187:8089/MobileApp_Service.asmx/";//client for office only
@@ -20,7 +20,7 @@ public class AppConfiguration {
     //public static String LIVE_BASE_URL = Utility.getPref(MyApp.getAppContext(), "live_base_url");
 //    public static String LIVE_BASE_URL = "http://192.168.1.22:8089/";
     public static String DOMAIN_LIVE = "";//use for client
-    public static String BASEURL = LIVE_BASE_URL + "MobileApp_Service.asmx";
+    public static String BASEURL = LIVE_BASE_URL + "MobileApp_Service.asmx/";
     //public static String IMAGE_LIVE = "http://192.168.1.11:8086/SKOOL360-Category-Images-Android/Student/";
     //  public static String IMAGE_LIVE="http://192.168.1.187:8089/SKOOL360-Category-Images-Android/Student/";
 
@@ -65,8 +65,8 @@ public class AppConfiguration {
     public static String GetCircularDetail = "GetCircularDetailStandard";
     public static String DeviceVersion = "GetLatestVersion";//DeviceVersion
     public static String GetGallery = "GetGallery";
-    public static String InsertStudentLeaveRequest = "InsertStudentLeaveRequest";
-    public static String GetStudentLeaveRequest = "GetStudentLeaveRequest";
+    public static String InsertStudentLeaveRequest = "InsertStudentLeaveRequest\";\n" +
+            "    public static String GetStudentLeaveRequest = \"GetStudentLeaveRequest";
     public static String CreateParentsSuggestion = "CreateParentsSuggestion";
     public static String GetHoliday = "GetHoliday";
     public static String DeleteDeviceDetail = "DeleteDeviceDetail";
@@ -101,7 +101,7 @@ public class AppConfiguration {
             case LIVE:
 
 //                LIVE_BASE_URL = LIVE_BASE_URL;
-//                LIVE_BASE_URL = Utility.getPref(MyApp.getAppContext(), "live_base_url");
+                LIVE_BASE_URL = Utility.getPref(MyApp.getAppContext(), "live_base_url");
 
                 IMAGE_LIVE = LIVE_BASE_URL + "SKOOL360-Category-Images-Android/Student/";
 
@@ -117,9 +117,9 @@ public class AppConfiguration {
 
                 url = DOMAIN_LOCAL + methodName;
 
-                //IMAGE_LIVE = "http://192.168.1.11:8086/SKOOL360-Category-Images-Android/Student/";
-
-                //GALLARY_LIVE = "http://192.168.1.11:8086/";
+                IMAGE_LIVE = "http://192.168.1.13:8089/SKOOL360-Category-Images/Student/";
+//
+                GALLARY_LIVE = "http://192.168.1.13:8089/";
 
                 break;
             default:

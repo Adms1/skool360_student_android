@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName;
 public class PhotoModel {
     @SerializedName("Title")
     @Expose
-    private String title;
+    private String title = "";
     @SerializedName("ImagePath")
     @Expose
-    private String imagePath;
+    private String imagePath = "";
 
     public String getTitle() {
         return title;

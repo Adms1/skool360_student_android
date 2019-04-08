@@ -57,7 +57,7 @@ public class SelectChildAdapter extends RecyclerView.Adapter<SelectChildAdapter.
             holder.llleft.setVisibility(View.VISIBLE);
             holder.llright.setVisibility(View.GONE);
 
-            Picasso.get().load(AppConfiguration.LIVE_BASE_URL + arrayList.get(position).getStudentimage()).into(holder.proright);
+            Picasso.get().load(AppConfiguration.LIVE_BASE_URL + arrayList.get(position).getStudentimage()).placeholder(R.drawable.profile_pic_holder).into(holder.proright);
             holder.nameleft.setText(arrayList.get(position).getStudentname());
             holder.gradeleft.setText(arrayList.get(position).getGradesection());
 

@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -188,16 +190,31 @@ public class ExpandableListAdapterAnnouncementnew extends BaseExpandableListAdap
                                             //  show_file.setVisibility(View.VISIBLE);
 
                                             if (file1 != null) {
+
                                                 File file2 = new File(file1);
                                                 Log.d("DownloadfilePath", "File to download = " + String.valueOf(file2));
-                                                MimeTypeMap mime = MimeTypeMap.getSingleton();
-                                                String ext = file2.getName().substring(file2.getName().indexOf(".") + 1);
-                                                String type = mime.getMimeTypeFromExtension(ext);
-                                                Log.d("type", type);
-                                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                                intent.setDataAndType(Uri.fromFile(file), type);
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                                                _context.startActivity(intent);
+
+                                                Intent intent;
+
+                                                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                                                    Uri uri = FileProvider.getUriForFile(_context, _context.getPackageName(), file2);
+                                                    intent = new Intent(Intent.ACTION_VIEW);
+                                                    intent.setData(uri);
+                                                    intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                                    _context.startActivity(intent);
+                                                }
+//                                                }
+                                                else {
+//
+                                                    MimeTypeMap mime = MimeTypeMap.getSingleton();
+                                                    String ext = file2.getName().substring(file2.getName().indexOf(".") + 1);
+                                                    String type = mime.getMimeTypeFromExtension(ext);
+                                                    Log.d("type", type);
+                                                    intent = new Intent(Intent.ACTION_VIEW);
+                                                    intent.setDataAndType(Uri.fromFile(file), type);
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                                    _context.startActivity(intent);
+                                                }
                                             }
                                         } else {
                                             Utility.ping(_context, "Something error");

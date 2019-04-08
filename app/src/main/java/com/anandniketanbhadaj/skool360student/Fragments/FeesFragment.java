@@ -13,10 +13,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.anandniketanbhadaj.skool360student.AsyncTasks.GetTermAsyncTask;
+import com.anandniketanbhadaj.skool360student.Models.TermModel;
 import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
 import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
@@ -29,6 +34,9 @@ import com.anandniketanbhadaj.skool360student.Utility.Utility;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -45,8 +53,12 @@ public class FeesFragment extends Fragment {
     private ProgressDialog progressDialog = null;
     private FeesAsyncTask getFeesAsyncTask = null;
     private GetFeesStatusTask feesStatusTask = null;
-
+    private Spinner term_detail_spinner;
+    HashMap<Integer, String> spinnerTermIdMap;
+    String FinalTermDetailIdStr = "1", FinalTermIdStr;
     private LinearLayout linear_right, fees_main_linear;
+    private ArrayList<TermModel> termModels = new ArrayList<>();
+    private GetTermAsyncTask getTermAsyncTask = null;
 
     public FeesFragment() {
     }
@@ -60,23 +72,25 @@ public class FeesFragment extends Fragment {
         initViews();
         setListners();
 
+        fillspinYear();
         getFeesData();
         return rootView;
     }
 
     public void initViews() {
-        btnMenu = (Button) rootView.findViewById(R.id.btnMenu);
-        txtNoRecordsUnitTest = (TextView) rootView.findViewById(R.id.txtNoRecordsUnitTest);
-        btnBackUnitTest = (Button) rootView.findViewById(R.id.btnBackUnitTest);
-        linearBack = (LinearLayout) rootView.findViewById(R.id.linearBack);
-        payment_total_amount_txt = (TextView) rootView.findViewById(R.id.payment_total_amount_txt);
-        payment_total_amount_status_txt = (TextView) rootView.findViewById(R.id.payment_total_amount_status_txt);
-        total_fee_txt = (TextView) rootView.findViewById(R.id.total_fee_txt);
-        due_fee_txt = (TextView) rootView.findViewById(R.id.due_fee_txt);
-        discount_fee_txt = (TextView) rootView.findViewById(R.id.discount_fee_txt);
-        more_detail_btn = (Button) rootView.findViewById(R.id.more_detail_btn);
-        linear_right = (LinearLayout) rootView.findViewById(R.id.linear_right);
-        fees_main_linear = (LinearLayout) rootView.findViewById(R.id.fees_main_linear);
+        btnMenu = rootView.findViewById(R.id.btnMenu);
+        txtNoRecordsUnitTest = rootView.findViewById(R.id.txtNoRecordsUnitTest);
+        btnBackUnitTest = rootView.findViewById(R.id.btnBackUnitTest);
+        linearBack = rootView.findViewById(R.id.linearBack);
+        payment_total_amount_txt = rootView.findViewById(R.id.payment_total_amount_txt);
+        payment_total_amount_status_txt = rootView.findViewById(R.id.payment_total_amount_status_txt);
+        total_fee_txt = rootView.findViewById(R.id.total_fee_txt);
+        due_fee_txt = rootView.findViewById(R.id.due_fee_txt);
+        discount_fee_txt = rootView.findViewById(R.id.discount_fee_txt);
+        more_detail_btn = rootView.findViewById(R.id.more_detail_btn);
+        linear_right = rootView.findViewById(R.id.linear_right);
+        fees_main_linear = rootView.findViewById(R.id.fees_main_linear);
+        term_detail_spinner = rootView.findViewById(R.id.fees_term_detail_spinner);
     }
 
     public void setListners() {
@@ -120,6 +134,28 @@ public class FeesFragment extends Fragment {
             }
         });
 
+        term_detail_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String name = term_detail_spinner.getSelectedItem().toString();
+                String getid = spinnerTermIdMap.get(term_detail_spinner.getSelectedItemPosition());
+
+                Log.d("TermDetailValue", name + "" + getid);
+                FinalTermIdStr = getid;
+                Log.d("FinalTermIdStr", FinalTermIdStr);
+
+                Utility.setPref(mContext, "TermID", getid);
+
+                getFeesData();
+                // getReportPermission();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     public void getFeesData() {
@@ -135,8 +171,9 @@ public class FeesFragment extends Fragment {
                     try {
                         HashMap<String, String> params = new HashMap<String, String>();
                         params.put("StudentID", Utility.getPref(mContext, "studid"));
-                        params.put("Term", Utility.getPref(mContext, "TermID"));
-                        params.put("StandardID", Utility.getPref(mContext, "standardID"));
+//                        params.put("Term", Utility.getPref(mContext, "TermID"));
+//                        params.put("StandardID", Utility.getPref(mContext, "standardID"));
+                        params.put("Term", FinalTermIdStr);
                         params.put("LocationID", Utility.getPref(mContext, "locationId"));
 
                         feesStatusTask = new GetFeesStatusTask(params);
@@ -251,6 +288,81 @@ public class FeesFragment extends Fragment {
 
                         }
 
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } else {
+            Utility.ping(mContext, "Network not available");
+        }
+    }
+
+    public void fillspinYear() {
+        if (Utility.isNetworkConnected(mContext)) {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        HashMap<String, String> params = new HashMap<>();
+                        getTermAsyncTask = new GetTermAsyncTask(params);
+                        termModels = getTermAsyncTask.execute().get();
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (termModels != null) {
+                                    if (termModels.size() > 0) {
+                                        ArrayList<String> termText = new ArrayList<>();
+                                        ArrayList<String> termId = new ArrayList<>();
+
+                                        for (int i = 0; i < termModels.size(); i++) {
+                                            termText.add(termModels.get(i).getTerm());
+                                            termId.add(termModels.get(i).getTermId());
+                                        }
+                                        Collections.sort(termId);
+                                        Collections.sort(termText);
+                                        String[] spinnertermdetailIdArray = new String[termId.size()];
+
+                                        spinnerTermIdMap = new HashMap<>();
+                                        for (int i = 0; i < termId.size(); i++) {
+                                            spinnerTermIdMap.put(i, String.valueOf(termId.get(i)));
+                                            spinnertermdetailIdArray[i] = termText.get(i).trim();
+                                        }
+                                        System.out.println("Sorted ArrayList in Java - Ascending order : " + spinnertermdetailIdArray);
+//                                        try {
+//                                            Field popup = Spinner.class.getDeclaredField("mPopup");
+//                                            popup.setAccessible(true);
+//
+//                                            // Get private mPopup member variable and try cast to ListPopupWindow
+//                                            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(term_detail_spinner);
+//
+//                                            popupWindow.setHeight(spinnertermdetailIdArray.length > 1 ? 200 : spinnertermdetailIdArray.length * 100);
+//                                        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+//                                            // silently fail...
+//                                        }
+                                        ArrayAdapter<String> adapterSpinYear = new ArrayAdapter<>(mContext, R.layout.spinner_layout, spinnertermdetailIdArray);
+                                        term_detail_spinner.setAdapter(adapterSpinYear);
+
+                                        final Calendar calendar = Calendar.getInstance();
+                                        int yy = calendar.get(Calendar.YEAR);
+
+                                        String CurrentYear = String.valueOf(yy);
+                                        for (int i = 0; i < spinnertermdetailIdArray.length; i++) {
+                                            if (spinnertermdetailIdArray[i].contains(CurrentYear)) {
+                                                term_detail_spinner.setSelection(i - 1);
+                                            }
+                                        }
+
+                                    } else {
+                                    }
+                                } else {
+                                    Intent serverintent = new Intent(mContext, Server_Error.class);
+                                    startActivity(serverintent);
+                                }
+                            }
+                        });
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

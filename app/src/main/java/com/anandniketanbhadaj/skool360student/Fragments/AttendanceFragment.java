@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -66,7 +67,7 @@ public class AttendanceFragment extends Fragment {
     private Spinner spinMonth, spinYear;
     private RelativeLayout rlCalender;
     private Context mContext;
-    private ProgressDialog progressDialog = null;
+    private ProgressDialog progressDialog = null, progressDialog1;
     private CaldroidFragment mCaldroidFragment = null;
     private GetAttendanceAsyncTask getAttendanceAsyncTask = null;
     private ArrayList<AttendanceModel> attendanceModels = new ArrayList<>();
@@ -78,7 +79,7 @@ public class AttendanceFragment extends Fragment {
             if (attendanceModels.size() > 0) {
                 for (int i = 0; i < attendanceModels.get(0).getEventsList().size(); i++) {
                     if (dateToString(date).equalsIgnoreCase(attendanceModels.get(0).getEventsList().get(i).getAttendanceDate())) {
-                        String comments = attendanceModels.get(0).getEventsList().get(i).getComment().toString();
+                        String comments = attendanceModels.get(0).getEventsList().get(i).getComment();
                         if (!comments.equalsIgnoreCase("")) {
                             AlertDialog ad = new AlertDialog.Builder(view.getContext()).create();
                             ad.setCancelable(false);
@@ -107,17 +108,28 @@ public class AttendanceFragment extends Fragment {
                 selectedmonth = String.valueOf(month);
             }
 
-            selectedyear = String.valueOf(year);
             getAttendance();
+
+            selectedyear = String.valueOf(year);
+
         }
 
         @Override
         public void onLongClickDate(Date date, View view) {
         }
 
+
+
         @Override
         public void onCaldroidViewCreated() {
+
+//            progressDialog1 = new ProgressDialog(mContext);
+//            progressDialog1.setMessage("Please Wait...");
+//            progressDialog1.setCancelable(false);
+//            progressDialog1.show();
+
             getAttendance();
+
         }
     };
     private ArrayList<String> presentDates = new ArrayList<>();
@@ -139,17 +151,17 @@ public class AttendanceFragment extends Fragment {
     }
 
     public void initViews() {
-        btnMenu = (Button) rootView.findViewById(R.id.btnMenu);
-        btnBackAttendance = (Button) rootView.findViewById(R.id.btnBackAttendance);
-        linearBack = (LinearLayout) rootView.findViewById(R.id.linearBack);
-        txtNoRecordsHomework = (TextView) rootView.findViewById(R.id.txtNoRecordsHomework);
-        rlCalender = (RelativeLayout) rootView.findViewById(R.id.rlCalender);
-        total_present_txt = (TextView) rootView.findViewById(R.id.total_present_txt);
-        total_absent_txt = (TextView) rootView.findViewById(R.id.total_absent_txt);
-        total_holiday_txt = (TextView) rootView.findViewById(R.id.total_holiday_txt);
-        linear_list = (LinearLayout) rootView.findViewById(R.id.bottom_sheet);
-        close_img = (ImageView) linear_list.findViewById(R.id.close_img);
-        holiday_list_rcv = (RecyclerView) linear_list.findViewById(R.id.holiday_list_rcv);
+        btnMenu = rootView.findViewById(R.id.btnMenu);
+        btnBackAttendance = rootView.findViewById(R.id.btnBackAttendance);
+        linearBack = rootView.findViewById(R.id.linearBack);
+        txtNoRecordsHomework = rootView.findViewById(R.id.txtNoRecordsHomework);
+        rlCalender = rootView.findViewById(R.id.rlCalender);
+        total_present_txt = rootView.findViewById(R.id.total_present_txt);
+        total_absent_txt = rootView.findViewById(R.id.total_absent_txt);
+        total_holiday_txt = rootView.findViewById(R.id.total_holiday_txt);
+        linear_list = rootView.findViewById(R.id.bottom_sheet);
+        close_img = linear_list.findViewById(R.id.close_img);
+        holiday_list_rcv = linear_list.findViewById(R.id.holiday_list_rcv);
         Collections.sort(year1);
         System.out.println("Sorted ArrayList in Java - Ascending order : " + year1);
 
@@ -177,12 +189,13 @@ public class AttendanceFragment extends Fragment {
 
     }
 
-
     public void getAttendance() {
         if (Utility.isNetworkConnected(mContext)) {
             progressDialog = new ProgressDialog(mContext);
             progressDialog.setMessage("Please Wait...");
             progressDialog.setCancelable(false);
+
+//            progressDialog.show();
 
             new Thread(new Runnable() {
                 @Override
@@ -199,6 +212,7 @@ public class AttendanceFragment extends Fragment {
                             @Override
                             public void run() {
                                 progressDialog.dismiss();
+
                                 absentDates.clear();
                                 HashMap hm = new HashMap();
                                 if (attendanceModels!=null) {

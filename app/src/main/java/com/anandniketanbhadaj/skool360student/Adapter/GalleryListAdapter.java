@@ -30,7 +30,7 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
     List<String> name;
     private Context mContext;
     private ImageLoader imageLoader;
-    private ArrayList<String> PhotoDetail;
+    private String PhotoDetail;
 
     public GalleryListAdapter(Context mContext, ArrayList<String> name, ArrayList<String> arrayList, onViewClick onViewClick) {
         this.mContext = mContext;
@@ -70,14 +70,17 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
         image = splitvalue[0];
         name = splitvalue[1];
 
-        imageLoader.displayImage(AppConfiguration.GALLARY_LIVE+ image, holder.event_image_img);
+        if(!image.equals("")) {
+            imageLoader.displayImage(AppConfiguration.GALLARY_LIVE + image, holder.event_image_img);
+        }else {
+            imageLoader.displayImage(String.valueOf(R.drawable.gallery_placeholder), holder.event_image_img);
+        }
         holder.pic_name.setText(name);
 
         holder.main_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PhotoDetail=new ArrayList<>();
-                PhotoDetail.add(String.valueOf(position));
+                PhotoDetail = String.valueOf(position);
                 onViewClick.getViewClick();
             }
         });
@@ -104,7 +107,7 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
 
     }
 
-    public ArrayList<String> getPhotoDetail() {
+    public String getPhotoDetail() {
         return PhotoDetail;
     }
 }

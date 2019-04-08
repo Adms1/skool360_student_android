@@ -187,11 +187,13 @@ public class GalleryFragment extends Fragment {
         for (int i = 0; i < galleryResponse.getFinalArray().size(); i++) {
             name.add(galleryResponse.getFinalArray().get(i).getEventName());
             if (galleryResponse.getFinalArray().get(i).getPhotos().size() > 0) {
+
                 arrayList.add(galleryResponse.getFinalArray().get(i).getPhotos().get(0).getImagePath() + "|" +
                         galleryResponse.getFinalArray().get(i).getPhotos().get(0).getTitle());
+            }else {
+                arrayList.add("" + "|" + galleryResponse.getFinalArray().get(i).getEventName());
             }
         }
-
 
         galleryListAdapter = new GalleryListAdapter(mContext, name, arrayList, new onViewClick() {
             @Override
@@ -199,11 +201,11 @@ public class GalleryFragment extends Fragment {
 
                 ArrayList<String> selectedposition = new ArrayList<String>();
 
-                selectedposition = galleryListAdapter.getPhotoDetail();
+                position = galleryListAdapter.getPhotoDetail();
                 Log.d("selectedposition", "" + selectedposition);
-                for (int i = 0; i < selectedposition.size(); i++) {
-                    position = selectedposition.get(i);
-                }
+//                for (int i = 0; i < selectedposition.size(); i++) {
+//                    position = selectedposition.get(i);
+//                }
                 Log.d("position", "" + position);
                 setSelectedImage();
             }

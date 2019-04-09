@@ -67,6 +67,8 @@ public class ProfileFragment extends Fragment {
         rootView = inflater.inflate(R.layout.profile_fragment, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         getUserProfile();
         setListners();

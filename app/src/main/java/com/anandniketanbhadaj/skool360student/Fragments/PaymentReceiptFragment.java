@@ -21,6 +21,7 @@ import com.anandniketanbhadaj.skool360student.Adapter.PaymentListAdapter;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.GetPaymentLedgerAsyncTask;
 import com.anandniketanbhadaj.skool360student.Interfacess.onViewClick;
 import com.anandniketanbhadaj.skool360student.Models.Suggestion.SuggestionInboxModel;
+import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 
 import java.util.HashMap;
@@ -48,6 +49,7 @@ public class PaymentReceiptFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_paymentreceipt, container, false);
         mContext = getActivity();
 
+
         initViews();
         setListners();
 
@@ -59,15 +61,18 @@ public class PaymentReceiptFragment extends Fragment {
         payment_report_list = (RecyclerView) rootView.findViewById(R.id.payment_report_list);
         txtNoRecordsUnitTest=(TextView)rootView.findViewById(R.id.txtNoRecordsUnitTest);
         lv_header = (LinearLayout) rootView.findViewById(R.id.lv_header);
-        setUserVisibleHint(true);
+
+        getPaymentLedger();
+
+//        setUserVisibleHint(true);
     }
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && rootView != null) {
-            getPaymentLedger();
-        }
-        // execute your data loading logic.
-    }
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser && rootView != null) {
+//            getPaymentLedger();
+//        }
+//        // execute your data loading logic.
+//    }
 
     public void setListners() {
 
@@ -83,6 +88,7 @@ public class PaymentReceiptFragment extends Fragment {
 
                         HashMap<String, String> params = new HashMap<String, String>();
                         params.put("studentid", Utility.getPref(mContext, "studid"));
+                        params.put("TermID", Utility.getPref(mContext, "TermID"));
                         params.put("LocationID", Utility.getPref(mContext, "locationId"));
                         getPaymentLedgerAsyncTask = new GetPaymentLedgerAsyncTask(params);
                         paymentdetailsModel = getPaymentLedgerAsyncTask.execute().get();
@@ -119,10 +125,11 @@ public class PaymentReceiptFragment extends Fragment {
                                         lv_header.setVisibility(View.GONE);
                                         payment_report_list.setVisibility(View.GONE);
                                     }
-                                } else {
-                                    Intent serverintent = new Intent(mContext, Server_Error.class);
-                                    startActivity(serverintent);
                                 }
+//                                else {
+//                                    Intent serverintent = new Intent(mContext, Server_Error.class);
+//                                    startActivity(serverintent);
+//                                }
                             }
                         });
                     } catch (Exception e) {

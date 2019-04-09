@@ -21,6 +21,7 @@ import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.CreateSuggestionAsyncTask;
 import com.anandniketanbhadaj.skool360student.Models.ExamSyllabus.CreateLeaveModel;
+import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 
 import java.lang.reflect.Field;
@@ -51,6 +52,8 @@ public class SuggestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_suggestion, container, false);
         mContext = getActivity();
+
+        AppConfiguration.position = 17;
 
         initViews();
         setListners();

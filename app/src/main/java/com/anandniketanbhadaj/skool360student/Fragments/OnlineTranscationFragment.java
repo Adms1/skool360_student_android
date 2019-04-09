@@ -1,7 +1,6 @@
 package com.anandniketanbhadaj.skool360student.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,25 +13,23 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
-import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
 import com.anandniketanbhadaj.skool360student.Adapter.OnlinePaymentAdapter;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.GetPaymentLedgerAsyncTask;
 import com.anandniketanbhadaj.skool360student.Models.Suggestion.SuggestionInboxModel;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 
 import java.util.HashMap;
-
 
 public class OnlineTranscationFragment extends Fragment {
     Fragment fragment;
     OnlinePaymentAdapter onlinePaymentAdapter;
     LinearLayout linearBack;
-TextView txtNoRecordsUnitTest;
+    TextView txtNoRecordsUnitTest;
+    SuggestionInboxModel paymentdetailsModel;
     private View rootView;
     private Context mContext;
     private GetPaymentLedgerAsyncTask getPaymentLedgerAsyncTask = null;
-   SuggestionInboxModel paymentdetailsModel;
     private RecyclerView payment_online_report_list;
     private LinearLayout lv_header;
 
@@ -54,11 +51,12 @@ TextView txtNoRecordsUnitTest;
     }
 
     public void initViews() {
-        payment_online_report_list = (RecyclerView) rootView.findViewById(R.id.payment_online_report_list);
-        lv_header = (LinearLayout) rootView.findViewById(R.id.lv_header);
-        txtNoRecordsUnitTest=(TextView)rootView.findViewById(R.id.txtNoRecordsUnitTest);
+        payment_online_report_list = rootView.findViewById(R.id.payment_online_report_list);
+        lv_header = rootView.findViewById(R.id.lv_header);
+        txtNoRecordsUnitTest = rootView.findViewById(R.id.txtNoRecordsUnitTest);
         setUserVisibleHint(true);
     }
+
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && rootView != null) {
@@ -79,8 +77,9 @@ TextView txtNoRecordsUnitTest;
                 if (Utility.isNetworkConnected(mContext)) {
                     try {
 
-                        HashMap<String, String> params = new HashMap<String, String>();
+                        HashMap<String, String> params = new HashMap<>();
                         params.put("studentid", Utility.getPref(mContext, "studid"));
+                        params.put("TermID", Utility.getPref(mContext, "TermID"));
                         params.put("LocationID", Utility.getPref(mContext, "locationId"));
                         getPaymentLedgerAsyncTask = new GetPaymentLedgerAsyncTask(params);
                         paymentdetailsModel = getPaymentLedgerAsyncTask.execute().get();
@@ -93,7 +92,7 @@ TextView txtNoRecordsUnitTest;
                                         txtNoRecordsUnitTest.setVisibility(View.GONE);
                                         lv_header.setVisibility(View.VISIBLE);
                                         payment_online_report_list.setVisibility(View.VISIBLE);
-                                        onlinePaymentAdapter=new OnlinePaymentAdapter(mContext,paymentdetailsModel);
+                                        onlinePaymentAdapter = new OnlinePaymentAdapter(mContext, paymentdetailsModel);
                                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                                         payment_online_report_list.setLayoutManager(mLayoutManager);
                                         payment_online_report_list.setItemAnimator(new DefaultItemAnimator());
@@ -103,10 +102,11 @@ TextView txtNoRecordsUnitTest;
                                         lv_header.setVisibility(View.GONE);
                                         payment_online_report_list.setVisibility(View.GONE);
                                     }
-                                } else {
-                                    Intent serverintent = new Intent(mContext, Server_Error.class);
-                                    startActivity(serverintent);
                                 }
+//                                else {
+//                                    Intent serverintent = new Intent(mContext, Server_Error.class);
+//                                    startActivity(serverintent);
+//                                }
                             }
                         });
                     } catch (Exception e) {

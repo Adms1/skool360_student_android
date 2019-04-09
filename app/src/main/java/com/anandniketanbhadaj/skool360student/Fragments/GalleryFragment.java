@@ -66,6 +66,8 @@ public class GalleryFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 
@@ -228,9 +230,7 @@ public class GalleryFragment extends Fragment {
             if (position.equalsIgnoreCase(String.valueOf(i))) {
                 name.add(galleryResponse.getFinalArray().get(i).getEventName());
                 event_name_txt.setText(galleryResponse.getFinalArray().get(i).getEventName());
-                for (int j = 0; j < galleryResponse.getFinalArray().get(i).getPhotos().size(); j++) {
-                    photoarrayList.add(galleryResponse.getFinalArray().get(i).getPhotos().get(j));
-                }
+                photoarrayList.addAll(galleryResponse.getFinalArray().get(i).getPhotos());
             }
         }
         galleryAdapter = new GalleryAdapter(mContext, name, photoarrayList, displayMode, new onViewClick() {
@@ -262,9 +262,7 @@ public class GalleryFragment extends Fragment {
             if (position.equalsIgnoreCase(String.valueOf(i))) {
                 name.add(galleryResponse.getFinalArray().get(i).getEventName());
                 event_name_txt.setText(galleryResponse.getFinalArray().get(i).getEventName());
-                for (int j = 0; j < galleryResponse.getFinalArray().get(i).getPhotos().size(); j++) {
-                    photoarrayList.add(galleryResponse.getFinalArray().get(i).getPhotos().get(j));
-                }
+                photoarrayList.addAll(galleryResponse.getFinalArray().get(i).getPhotos());
             }
         }
         galleryAdapter = new GalleryAdapter(mContext, name, photoarrayList, displayMode, new onViewClick() {

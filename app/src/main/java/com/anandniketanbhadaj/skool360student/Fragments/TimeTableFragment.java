@@ -55,6 +55,8 @@ public class TimeTableFragment extends Fragment {
         rootView = inflater.inflate(R.layout.timetable_fragment, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 

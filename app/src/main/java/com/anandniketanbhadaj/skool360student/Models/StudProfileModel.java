@@ -34,15 +34,15 @@ public class StudProfileModel {
     private String UserName;
     private String Password;
     private String TeacherName;
-    private String TodayAttendance;
-
-    public String getTodayAttendance() {
-        return TodayAttendance;
-    }
-
-    public void setTodayAttendance(String todayAttendance) {
-        TodayAttendance = todayAttendance;
-    }
+//    private String TodayAttendance;
+//
+//    public String getTodayAttendance() {
+//        return TodayAttendance;
+//    }
+//
+//    public void setTodayAttendance(String todayAttendance) {
+//        TodayAttendance = todayAttendance;
+//    }
 
 
     public String getTeacherName() {

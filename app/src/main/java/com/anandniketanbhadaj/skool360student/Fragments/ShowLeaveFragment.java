@@ -55,6 +55,8 @@ public class ShowLeaveFragment extends Fragment implements View.OnClickListener 
         rootView = inflater.inflate(R.layout.fragment_show_leave, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 

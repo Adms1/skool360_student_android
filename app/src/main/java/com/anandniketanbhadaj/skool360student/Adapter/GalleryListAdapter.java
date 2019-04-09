@@ -25,8 +25,8 @@ import java.util.List;
 
 public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.MyViewHolder> {
 
-    List<String> arrayList;
-    onViewClick onViewClick;
+    private List<String> arrayList;
+    private onViewClick onViewClick;
     List<String> name;
     private Context mContext;
     private ImageLoader imageLoader;
@@ -49,12 +49,14 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
     @Override
     public void onBindViewHolder(final GalleryListAdapter.MyViewHolder holder, final int position) {
         imageLoader = ImageLoader.getInstance();
+
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(300))
                 .build();
+
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
                 mContext)
                 .threadPriority(Thread.MAX_PRIORITY)
@@ -63,12 +65,15 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
                 .denyCacheImageMultipleSizesInMemory()
                 .tasksProcessingOrder(QueueProcessingType.LIFO)// .enableLogging()
                 .build();
-        imageLoader.init(config.createDefault(mContext));
 
-        String image, name;
+        imageLoader.init(ImageLoaderConfiguration.createDefault(mContext));
+
+        String image, name = "";
         String[] splitvalue = arrayList.get(position).split("\\|");
         image = splitvalue[0];
-        name = splitvalue[1];
+        if(splitvalue.length > 1) {
+            name = splitvalue[1];
+        }
 
         if(!image.equals("")) {
             imageLoader.displayImage(AppConfiguration.GALLARY_LIVE + image, holder.event_image_img);
@@ -99,9 +104,9 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
 
         public MyViewHolder(View view) {
             super(view);
-            pic_name = (TextView) view.findViewById(R.id.pic_name);
-            event_image_img = (ImageView) view.findViewById(R.id.event_image_img);
-            main_linear = (ConstraintLayout) view.findViewById(R.id.main_linear);
+            pic_name = view.findViewById(R.id.pic_name);
+            event_image_img = view.findViewById(R.id.event_image_img);
+            main_linear = view.findViewById(R.id.main_linear);
         }
 
 

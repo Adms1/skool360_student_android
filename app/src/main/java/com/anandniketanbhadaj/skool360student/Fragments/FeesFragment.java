@@ -69,11 +69,13 @@ public class FeesFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_fees, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 
         fillspinYear();
-        getFeesData();
+//        getFeesData();
         return rootView;
     }
 
@@ -128,6 +130,10 @@ public class FeesFragment extends Fragment {
         more_detail_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                AppConfiguration.position = 10;
+                AppConfiguration.firsttimeback = true;
+
                 Fragment fragment = new PaymentFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out).replace(R.id.frame_container, fragment).commit();
@@ -180,8 +186,6 @@ public class FeesFragment extends Fragment {
 
                         responseString = feesStatusTask.execute().get();
 
-
-
                         if(responseString != null){
 
                             try {
@@ -228,7 +232,8 @@ public class FeesFragment extends Fragment {
                                                     due_fee_txt.setText("Due" + "\n" + "₹" + " " + Html.fromHtml(feesMainResponse.getTermDuePay()));
                                                     discount_fee_txt.setText("Discount" + "\n" + "₹" + " " + Html.fromHtml(feesMainResponse.getTermDiscount()));
                                                     linear_right.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.right2));
-
+                                                    more_detail_btn.setEnabled(true);
+                                                    more_detail_btn.setAlpha(1);
                                                 } else {
                                                     progressDialog.dismiss();
                                                     payment_total_amount_txt.setText("₹" + " " + "0");
@@ -306,6 +311,7 @@ public class FeesFragment extends Fragment {
                 public void run() {
                     try {
                         HashMap<String, String> params = new HashMap<>();
+                        params.put("LocationID", Utility.getPref(mContext, "locationId"));
                         getTermAsyncTask = new GetTermAsyncTask(params);
                         termModels = getTermAsyncTask.execute().get();
 
@@ -351,7 +357,7 @@ public class FeesFragment extends Fragment {
                                         String CurrentYear = String.valueOf(yy);
                                         for (int i = 0; i < spinnertermdetailIdArray.length; i++) {
                                             if (spinnertermdetailIdArray[i].contains(CurrentYear)) {
-                                                term_detail_spinner.setSelection(i - 1);
+                                                term_detail_spinner.setSelection(i);
                                             }
                                         }
 

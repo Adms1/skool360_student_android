@@ -57,6 +57,8 @@ public class SuggestionInboxFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_suggestion_inbox, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 

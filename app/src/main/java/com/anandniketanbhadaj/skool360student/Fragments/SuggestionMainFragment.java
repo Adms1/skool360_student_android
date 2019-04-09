@@ -37,6 +37,9 @@ public class SuggestionMainFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_suggestion_main, container, false);
         mContext = getActivity();
+
+        AppConfiguration.position = 17;
+
         init();
         setListner();
         return rootView;

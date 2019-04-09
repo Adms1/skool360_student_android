@@ -69,6 +69,8 @@ public class ClassworkFragment extends Fragment {
         rootView = inflater.inflate(R.layout.classwork_fragment, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 

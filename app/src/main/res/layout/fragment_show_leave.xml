@@ -39,13 +39,13 @@
             android:layout_height="@dimen/_23sdp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true">
-        <Button
-            android:id="@+id/btnBackCanteen"
-            android:layout_width="@dimen/_13sdp"
-            android:layout_height="@dimen/_15sdp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:background="@drawable/back_btn" />
+            <Button
+                android:id="@+id/btnBackCanteen"
+                android:layout_width="@dimen/_13sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/back_btn" />
         </LinearLayout>
 
     </RelativeLayout>

@@ -141,7 +141,7 @@ public class ParseJSON {
                     studProfileModel.setUserName(jsonChildNode.getString("UserName"));
                     studProfileModel.setPassword(jsonChildNode.getString("Password"));
                     studProfileModel.setTeacherName(jsonChildNode.getString("ClassTeacher"));
-                    studProfileModel.setTodayAttendance(jsonChildNode.getString("TodayAttendance"));
+//                    studProfileModel.setTodayAttendance(jsonChildNode.getString("TodayAttendance"));
                     result.add(studProfileModel);
                 }
             } else {

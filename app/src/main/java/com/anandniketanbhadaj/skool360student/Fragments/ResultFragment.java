@@ -58,6 +58,8 @@ public class ResultFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_result, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 

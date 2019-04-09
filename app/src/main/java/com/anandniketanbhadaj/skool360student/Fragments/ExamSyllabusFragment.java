@@ -64,6 +64,8 @@ public class ExamSyllabusFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_exam_syllabus, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 

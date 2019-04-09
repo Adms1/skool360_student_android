@@ -40,7 +40,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 
-
 public class ReportCardFragment extends Fragment {
     WebView webview_report_card;
     HashMap<Integer, String> spinnerTermIdMap;
@@ -67,6 +66,8 @@ public class ReportCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_report_card, container, false);
         mContext = getActivity();
+
+        AppConfiguration.position = 17;
 
         initViews();
         setListners();

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
@@ -68,10 +69,13 @@ public class AttendanceFragment extends Fragment {
     private RelativeLayout rlCalender;
     private Context mContext;
     private ProgressDialog progressDialog = null, progressDialog1;
-    private CaldroidFragment mCaldroidFragment = null;
+    private CaldroidFragment mCaldroidFragment;
     private GetAttendanceAsyncTask getAttendanceAsyncTask = null;
     private ArrayList<AttendanceModel> attendanceModels = new ArrayList<>();
     private ArrayList<String> absentDates = new ArrayList<>();
+
+    private boolean isclicked = true;
+
     final CaldroidListener listener = new CaldroidListener() {
 
         @Override
@@ -100,7 +104,13 @@ public class AttendanceFragment extends Fragment {
 
         @Override
         public void onChangeMonth(int month, int year) {
+
             String text = "month: " + month + " year: " + year;
+
+            progressDialog1 = new ProgressDialog(getContext());
+            progressDialog1.setCanceledOnTouchOutside(true);
+            progressDialog1.setMessage("Please Wait...");
+            progressDialog1.show();
 
             if (month < 10) {
                 selectedmonth = "0" + String.valueOf(month);
@@ -108,10 +118,35 @@ public class AttendanceFragment extends Fragment {
                 selectedmonth = String.valueOf(month);
             }
 
-            getAttendance();
+//            final Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+
+                    if(mCaldroidFragment.isEnableSwipe()){
+                getAttendance();
+
+            }else {
+                mCaldroidFragment.setEnableSwipe(true);
+                progressDialog1.dismiss();
+            }
+//                }
+//            }, 1000);
+//            else {
+//
+//            }
+
+//            if(isclicked) {
+//                getAttendance();
+//            }else {
+//                isclicked = true;
+//                mCaldroidFragment.swsetEnableSwipe(false);
+//                progressDialog1.dismiss();
+//                onCaldroidViewCreated();
+//            }
 
             selectedyear = String.valueOf(year);
-
+//            progressDialog1.dismiss();
         }
 
         @Override
@@ -128,7 +163,7 @@ public class AttendanceFragment extends Fragment {
 //            progressDialog1.setCancelable(false);
 //            progressDialog1.show();
 
-            getAttendance();
+//            getAttendance();
 
         }
     };
@@ -143,6 +178,8 @@ public class AttendanceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.attendance_fragment, container, false);
         mContext = getActivity();
+
+        AppConfiguration.position = 17;
 
         initViews();
         setListners();
@@ -163,6 +200,7 @@ public class AttendanceFragment extends Fragment {
         close_img = linear_list.findViewById(R.id.close_img);
         holiday_list_rcv = linear_list.findViewById(R.id.holiday_list_rcv);
         Collections.sort(year1);
+
         System.out.println("Sorted ArrayList in Java - Ascending order : " + year1);
 
         final Calendar calendar = Calendar.getInstance();
@@ -177,16 +215,14 @@ public class AttendanceFragment extends Fragment {
             args.putBoolean(CaldroidFragment.ENABLE_SWIPE, true);
             args.putBoolean(CaldroidFragment.SHOW_NAVIGATION_ARROWS, true);
 
-
             mCaldroidFragment.setArguments(args);
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.calFrameContainer, mCaldroidFragment).commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-
         sheetBehavior = BottomSheetBehavior.from(linear_list);
-
+        sheetBehavior.setHideable(false);
     }
 
     public void getAttendance() {
@@ -195,6 +231,7 @@ public class AttendanceFragment extends Fragment {
             progressDialog.setMessage("Please Wait...");
             progressDialog.setCancelable(false);
 
+            isclicked = false;
 //            progressDialog.show();
 
             new Thread(new Runnable() {
@@ -212,7 +249,7 @@ public class AttendanceFragment extends Fragment {
                             @Override
                             public void run() {
                                 progressDialog.dismiss();
-
+                                progressDialog1.dismiss();
                                 absentDates.clear();
                                 HashMap hm = new HashMap();
                                 if (attendanceModels!=null) {
@@ -258,6 +295,10 @@ public class AttendanceFragment extends Fragment {
                                         total_present_txt.setText("0");
                                         total_holiday_txt.setText("0");
                                     }
+
+                                    mCaldroidFragment.setEnableSwipe(true);
+
+
                                 }else{
                                     Intent serverintent=new Intent(mContext,Server_Error.class);
                                     startActivity(serverintent);

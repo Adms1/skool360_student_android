@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.anandniketanbhadaj.skool360student.Fragments.PaymentFragment;
 import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Adapter.menuoptionItemAdapter;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.DeleteDeviceDetailAsyncTask;
@@ -539,7 +540,16 @@ public class DashBoardActivity extends FragmentActivity {
                         .setIcon(R.drawable.ic_launcher)
                         .show();
                 break;
+
+            case 18:
+                fragment = new PaymentFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                AppConfiguration.firsttimeback = true;
+                AppConfiguration.position = 18;
+                break;
         }
+
         if (AppConfiguration.position != 16) {
             if (fragment != null) {
 
@@ -593,7 +603,7 @@ public class DashBoardActivity extends FragmentActivity {
     public void onBackPressed() {
         if (AppConfiguration.firsttimeback) {
             if (AppConfiguration.position != 0) {
-                displayView(0);
+                displayView(AppConfiguration.position);
             }
 //            else {
 //                Utility.ping(mContext, "Press again to exit");

@@ -70,6 +70,8 @@ public class HolidayFragment extends Fragment implements View.OnClickListener {
         rootView = inflater.inflate(R.layout.fragment_holiday, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 

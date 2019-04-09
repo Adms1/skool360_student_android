@@ -69,6 +69,8 @@ public class HomeworkFragment extends Fragment {
         rootView = inflater.inflate(R.layout.homework_fragment, container, false);
         mContext = getActivity();
 
+        AppConfiguration.position = 17;
+
         initViews();
         setListners();
 

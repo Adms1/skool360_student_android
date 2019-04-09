@@ -54,8 +54,18 @@
         android:id="@+id/linear_term"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginBottom="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_5sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Academic Year : "
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp" />
 
         <Spinner
             android:id="@+id/term_detail_spinner"
@@ -63,7 +73,6 @@
             android:layout_height="@dimen/_30sdp"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/_3sdp"
-            android:layout_marginLeft="@dimen/_115sdp"
             android:layout_marginTop="@dimen/_2sdp"
             android:background="@drawable/dropdown_button"
             android:forceHasOverlappingRendering="false"

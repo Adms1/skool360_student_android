@@ -24,6 +24,7 @@ import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
 import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.InsertStudentLeaveAsyncTask;
 import com.anandniketanbhadaj.skool360student.Models.ExamSyllabus.CreateLeaveModel;
+import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 
 import java.util.Calendar;
@@ -54,6 +55,8 @@ public class LeaveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_leave, container, false);
         mContext = getActivity();
+
+        AppConfiguration.position = 17;
 
         initViews();
         setListners();

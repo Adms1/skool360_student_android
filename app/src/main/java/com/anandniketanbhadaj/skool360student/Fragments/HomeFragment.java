@@ -404,11 +404,11 @@ public class HomeFragment extends Fragment {
                                     // Utility.setPref(mContext, "image", studDetailList.get(0).getStudentImage());
                                     admission_txt.setText("GRNo :" + " " + studDetailList.get(0).getGRNO());
 
-                                    if (studDetailList.get(0).getTodayAttendance().equalsIgnoreCase("")) {
-                                        attendance_txt.setText("Attendance :" + " " + "N/A Today");
-                                    } else {
-                                        attendance_txt.setText("Attendance :" + " " + studDetailList.get(0).getTodayAttendance());
-                                    }
+//                                    if (studDetailList.get(0).getTodayAttendance().equalsIgnoreCase("")) {
+//                                        attendance_txt.setText("Attendance :" + " " + "N/A Today");
+//                                    } else {
+//                                        attendance_txt.setText("Attendance :" + " " + studDetailList.get(0).getTodayAttendance());
+//                                    }
 
                                     if (!Utility.getPref(mContext, "Loginwithother").equalsIgnoreCase("True")) {
                                         if (Utility.getPref(mContext, "RegisterStatus").equalsIgnoreCase("false")) {

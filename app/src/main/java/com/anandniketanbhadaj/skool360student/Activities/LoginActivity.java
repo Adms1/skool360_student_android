@@ -26,12 +26,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.ForgotpasswordAsyncTask;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.GetStandardSectionAsyncTask;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.GetStudentListAsyncTask;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.VerifyLoginAsyncTask;
 import com.anandniketanbhadaj.skool360student.Models.ExamSyllabus.ExamModel;
+import com.anandniketanbhadaj.skool360student.Models.ShowBirthdayWish;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.SelectChildModel;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 
@@ -64,7 +65,9 @@ public class LoginActivity extends Activity {
     private HashMap<String, String> param = new HashMap<String, String>();
     private String putExtras = "0";
     private String putExtrasData = "0", Name;
-    private String FinalStandardIdStr, FinalStandardStr, FinalSectionIdStr, FinalSectionStr, FinalStudentIdStr, FinalStudentNameStr;
+    private String FinalStandardIdStr, FinalStandardStr, FinalSectionIdStr, FinalSectionStr, FinalStudentIdStr, FinalStudentNameStr, notificationMsg;
+
+    private ArrayList<ShowBirthdayWish> birthdayWishes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,6 +208,15 @@ public class LoginActivity extends Activity {
                                         Utility.setPref(mContext, "upass", edtPassword.getText().toString());
                                         Utility.setPref(mContext, "FamilyID", result.getFinalarray().get(0).getFamilyid());
 
+//                                        for (int i = 0; i < result.getFinalarray().size(); i++) {
+//                                            ShowBirthdayWish showBirthdayWish = new ShowBirthdayWish();
+//                                            showBirthdayWish.setId(result.getFinalarray().get(i).getStudentid());
+//                                            showBirthdayWish.setShow(false);
+//                                            birthdayWishes.add(showBirthdayWish);
+//                                        }
+//
+//                                        Utility.setArray(mContext, "showbirthday", birthdayWishes);
+
                                         if(result.getStudentcount() > 1) {
 
                                             Intent intent = new Intent(LoginActivity.this, SelectChildActivity.class);
@@ -219,7 +231,16 @@ public class LoginActivity extends Activity {
                                             Utility.setPref(mContext, "RegisterStatus", result.getFinalarray().get(0).getRegisterstatus());
 
                                             Intent intent = new Intent(mContext, DashBoardActivity.class);
-                                            mContext.startActivity(intent);
+                                            try {
+                                                notificationMsg = Utility.getPref(LoginActivity.this, "Push_Notification_message");
+                                                if (notificationMsg != null) {
+                                                    intent.putExtra("message", putExtrasData);
+                                                    intent.putExtra("fromNotification", putExtras);
+                                                }
+                                            } catch (Exception ex) {
+                                                ex.printStackTrace();
+                                            }
+                                            startActivity(intent);
                                         }
 
                                         edtUserName.setText("");

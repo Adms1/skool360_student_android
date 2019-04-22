@@ -18,12 +18,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
 import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
 import com.anandniketanbhadaj.skool360student.Adapter.LeaveListAdapter;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.GetLeaveDataAsyncTask;
 import com.anandniketanbhadaj.skool360student.Models.ExamSyllabus.ExamModel;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 
@@ -65,13 +65,13 @@ public class ShowLeaveFragment extends Fragment implements View.OnClickListener 
 
     public void initViews() {
 
-        btnMenu = (Button) rootView.findViewById(R.id.btnMenu);
-        txtNoRecordsClasswork = (TextView) rootView.findViewById(R.id.txtNoRecordsClasswork);
-        btnBackCanteen = (Button) rootView.findViewById(R.id.btnBackCanteen);
-        linearBack=(LinearLayout)rootView.findViewById(R.id.linearBack);
-        add_leave_fab_btn = (FloatingActionButton) rootView.findViewById(R.id.add_leave_fab_btn);
-        listLeave = (RecyclerView) rootView.findViewById(R.id.listLeave);
-        header_linear=(LinearLayout)rootView.findViewById(R.id.header_linear) ;
+        btnMenu = rootView.findViewById(R.id.btnMenu);
+        txtNoRecordsClasswork = rootView.findViewById(R.id.txtNoRecordsClasswork);
+        btnBackCanteen = rootView.findViewById(R.id.btnBackCanteen);
+        linearBack = rootView.findViewById(R.id.linearBack);
+        add_leave_fab_btn = rootView.findViewById(R.id.add_leave_fab_btn);
+        listLeave = rootView.findViewById(R.id.listLeave);
+        header_linear = rootView.findViewById(R.id.header_linear);
 
         getLeaveData();
     }

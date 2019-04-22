@@ -48,15 +48,13 @@ public class Utility {
     public static Dialog dialog;
     public static AVLoadingIndicatorView avi;
 
+    public static ArrayList<String> birthday = new ArrayList<>();
+
     public static boolean isNetworkConnected(Context ctxt) {
         ConnectivityManager cm = (ConnectivityManager) ctxt
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = cm.getActiveNetworkInfo();
-        if (ni == null) {
-            // There are no active networks.
-            return false;
-        } else
-            return true;
+        return ni != null;
     }
 
     public static void ping(Context context, String message){
@@ -93,6 +91,44 @@ public class Utility {
         sharedpreferences = context.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String value = sharedpreferences.getString(key, "");
         return value;
+    }
+
+//    public static void setArray(Context pContext, String pKey, ArrayList<String> pData) {
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(pContext);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        Gson gson = new Gson();
+//        String json = gson.toJson(pData);
+//        editor.putString(pKey, json);
+//        editor.apply();
+//    }
+//
+//    public static ArrayList<String> loadArray(Activity mContext, String pKey)
+//    {
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+//        Gson gson = new Gson();
+//        String json = prefs.getString(pKey, null);
+//        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+//        return gson.fromJson(json, type);
+//
+//    }
+
+    public static void setArray(Context pContext, String pKey, ArrayList<String> pData) {
+        SharedPreferences prefs = pContext.getSharedPreferences("preferencename", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(pKey + "_size", pData.size());
+        for (int i = 0; i < pData.size(); i++)
+            editor.putString(pKey + "_" + i, pData.get(i));
+        editor.commit();
+    }
+
+    public static ArrayList<String> loadArray(Activity mContext, String pKey) {
+        SharedPreferences prefs = mContext.getSharedPreferences("preferencename", 0);
+        int size = prefs.getInt(pKey + "_size", 0);
+        ArrayList<String> array = new ArrayList<>();
+        for (int i = 0; i < size; i++)
+            array.add(prefs.getString(pKey + "_" + i, null));
+        return array;
+
     }
 
     public static boolean isFileExists(String fileName, String moduleName){
@@ -182,7 +218,7 @@ public class Utility {
         dialog.setContentView(R.layout.progressbar_dialog);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        avi=(AVLoadingIndicatorView)dialog.findViewById(R.id.avi) ;
+        avi = dialog.findViewById(R.id.avi);
       avi.show();
         dialog.show();
     }
@@ -282,10 +318,7 @@ public class Utility {
         int monthOfYear = c.get(Calendar.MONTH) + 1;
         int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        if((month == monthOfYear) && (date == dayOfMonth)){
-            return true;
-        }
-        return false;
+        return (month == monthOfYear) && (date == dayOfMonth);
     }
 
     public static void showUserBirthdayWish(Context context,String Bday){
@@ -310,7 +343,7 @@ public class Utility {
                                 if (flag.equalsIgnoreCase("0")) {
                                     Utility.setPref(context, "user_birthday_wish", "1");
                                     Utility.setPref(context, "user_birthday", "N/A");
-                                    DialogUtils.showGIFDialog(context, "Anand Niketan Bhadaj");
+                                    DialogUtils.showGIFDialog(context, "Skool 360");
 
                                 }
                             }

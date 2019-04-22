@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Interfacess.onViewClick;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -77,10 +77,10 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
 
         if(!image.equals("")) {
             imageLoader.displayImage(AppConfiguration.GALLARY_LIVE + image, holder.event_image_img);
-        }else {
+            holder.pic_name.setText(name);
+        } else {
             imageLoader.displayImage(String.valueOf(R.drawable.gallery_placeholder), holder.event_image_img);
         }
-        holder.pic_name.setText(name);
 
         holder.main_linear.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
 import com.anandniketanbhadaj.skool360student.Activities.EqualSpacingItemDecoration;
 import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
@@ -28,6 +27,7 @@ import com.anandniketanbhadaj.skool360student.AsyncTasks.GalleryAsyncTask;
 import com.anandniketanbhadaj.skool360student.Interfacess.onViewClick;
 import com.anandniketanbhadaj.skool360student.Models.ExamSyllabus.ExamModel;
 import com.anandniketanbhadaj.skool360student.Models.ExamSyllabus.PhotoModel;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 
@@ -75,13 +75,13 @@ public class GalleryFragment extends Fragment {
     }
 
     public void initViews() {
-        btnMenu = (Button) rootView.findViewById(R.id.btnMenu);
-        btnBack = (Button) rootView.findViewById(R.id.btnBack);
-        linearBack = (LinearLayout) rootView.findViewById(R.id.linearBack);
-        gallery_list = (RecyclerView) rootView.findViewById(R.id.gallery_list);
-        gallery_list1 = (RecyclerView) rootView.findViewById(R.id.gallery_list1);
-        photo_name = (TextView) rootView.findViewById(R.id.photo_name);
-        event_name_txt = (TextView) rootView.findViewById(R.id.event_name_txt);
+        btnMenu = rootView.findViewById(R.id.btnMenu);
+        btnBack = rootView.findViewById(R.id.btnBack);
+        linearBack = rootView.findViewById(R.id.linearBack);
+        gallery_list = rootView.findViewById(R.id.gallery_list);
+        gallery_list1 = rootView.findViewById(R.id.gallery_list1);
+        photo_name = rootView.findViewById(R.id.photo_name);
+        event_name_txt = rootView.findViewById(R.id.event_name_txt);
         getGalleryData();
 
     }
@@ -183,7 +183,7 @@ public class GalleryFragment extends Fragment {
         gallery_list.setVisibility(View.VISIBLE);
         gallery_list1.setVisibility(View.GONE);
         event_name_txt.setVisibility(View.GONE);
-        arrayList = new ArrayList<String>();
+        arrayList = new ArrayList<>();
         name = new ArrayList<>();
 
         for (int i = 0; i < galleryResponse.getFinalArray().size(); i++) {
@@ -201,7 +201,7 @@ public class GalleryFragment extends Fragment {
             @Override
             public void getViewClick() {
 
-                ArrayList<String> selectedposition = new ArrayList<String>();
+                ArrayList<String> selectedposition = new ArrayList<>();
 
                 position = galleryListAdapter.getPhotoDetail();
                 Log.d("selectedposition", "" + selectedposition);
@@ -209,7 +209,7 @@ public class GalleryFragment extends Fragment {
 //                    position = selectedposition.get(i);
 //                }
                 Log.d("position", "" + position);
-                setSelectedImage();
+                setSelectedImage(position);
             }
         });
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 2);
@@ -219,7 +219,7 @@ public class GalleryFragment extends Fragment {
 
     }
 
-    public void setSelectedImage() {
+    public void setSelectedImage(String position) {
         gallery_list.setVisibility(View.VISIBLE);
         gallery_list1.setVisibility(View.GONE);
         event_name_txt.setVisibility(View.VISIBLE);

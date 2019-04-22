@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -23,12 +24,12 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
 import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
 import com.anandniketanbhadaj.skool360student.Adapter.PaymentPageAdapter;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.FeesDetailsAsyncTask;
 import com.anandniketanbhadaj.skool360student.Models.FeesModel;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 
@@ -372,6 +373,48 @@ public class PaymentFragment extends Fragment {
 //
 //                mType.setText(buffer+"\n"+text.substring(0));
 //            }
+
+            if (feesMainResponse.getFinalArray().get(i).getLedgerName().equalsIgnoreCase("total dues")) {
+
+//                if ((feesMainResponse.getFinalArray().get(i).getTerm1Amt().contains("Cr")
+//                        || feesMainResponse.getFinalArray().get(i).getTerm1Amt().equalsIgnoreCase("0"))) {
+//
+//                    mValue.setTextColor(getActivity().getResources().getColor(R.color.green_trophy_room));
+//
+//                } else if (feesMainResponse.getFinalArray().get(i).getTerm1Amt().contains("Dr")) {
+//
+//                    mValue.setTextColor(getActivity().getResources().getColor(R.color.red));
+//
+//                }else {
+//                    mValue.setTextColor(getActivity().getResources().getColor(R.color.black));
+//
+//                }
+//
+//                if ((feesMainResponse.getFinalArray().get(i).getTerm2Amt().contains("Cr")
+//                        || feesMainResponse.getFinalArray().get(i).getTerm2Amt().equalsIgnoreCase("0"))) {
+//
+//                    mValue1.setTextColor(getActivity().getResources().getColor(R.color.green_trophy_room));
+//
+//                } else if (feesMainResponse.getFinalArray().get(i).getTerm2Amt().contains("Dr")) {
+//
+//                    mValue1.setTextColor(getActivity().getResources().getColor(R.color.red));
+//
+//                }else {
+//                    mValue1.setTextColor(getActivity().getResources().getColor(R.color.black));
+//
+//                }
+
+                mType.setTextColor(getActivity().getResources().getColor(R.color.black));
+                mValue.setTextColor(getActivity().getResources().getColor(R.color.black));
+                mValue1.setTextColor(getActivity().getResources().getColor(R.color.black));
+
+                mType.setTypeface(null, Typeface.BOLD);
+                mValue.setTypeface(null, Typeface.BOLD);
+                mValue1.setTypeface(null, Typeface.BOLD);
+
+
+//                mType.setTextS
+            }
 
             mType.setText(feesMainResponse.getFinalArray().get(i).getLedgerName());
             mValue.setText("₹" + " " + String.valueOf(feesMainResponse.getFinalArray().get(i).getTerm1Amt()));

@@ -26,7 +26,6 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
 import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
 import com.anandniketanbhadaj.skool360student.Adapter.HomeImageAdapter;
@@ -36,6 +35,7 @@ import com.anandniketanbhadaj.skool360student.AsyncTasks.ChangePasswordAsyncTask
 import com.anandniketanbhadaj.skool360student.AsyncTasks.GetUserProfileAsyncTask;
 import com.anandniketanbhadaj.skool360student.Models.DeviceVersionModel;
 import com.anandniketanbhadaj.skool360student.Models.StudProfileModel;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -392,7 +392,21 @@ public class HomeFragment extends Fragment {
 
                                     String bDate = studDetailList.get(0).getStudentDOB();
 
-                                    Utility.showUserBirthdayWish(getActivity(), bDate);
+                                    if (Utility.birthday == null) {
+                                        Utility.setPref(mContext, "user_birthday_wish", "0");
+                                        Utility.showUserBirthdayWish(getActivity(), bDate);
+                                        Utility.birthday.add(Utility.getPref(mContext, "studid"));
+                                        Utility.setArray(mContext, "birthdayarr", Utility.birthday);
+
+                                    } else {
+                                        if (!Utility.birthday.contains(Utility.getPref(mContext, "studid"))) {
+                                            Utility.setPref(mContext, "user_birthday_wish", "0");
+                                            Utility.setPref(mContext, "user_birthday", "");
+                                            Utility.showUserBirthdayWish(getActivity(), bDate);
+                                            Utility.birthday.add(Utility.getPref(mContext, "studid"));
+                                            Utility.setArray(mContext, "birthdayarr", Utility.birthday);
+                                        }
+                                    }
 
                                     student_name_txt.setText(studDetailList.get(0).getStudentName());
                                     vehicle_picktime_txt.setText("Pick Up : " + studDetailList.get(0).getTransport_PicupTime());
@@ -404,11 +418,11 @@ public class HomeFragment extends Fragment {
                                     // Utility.setPref(mContext, "image", studDetailList.get(0).getStudentImage());
                                     admission_txt.setText("GRNo :" + " " + studDetailList.get(0).getGRNO());
 
-//                                    if (studDetailList.get(0).getTodayAttendance().equalsIgnoreCase("")) {
-//                                        attendance_txt.setText("Attendance :" + " " + "N/A Today");
-//                                    } else {
-//                                        attendance_txt.setText("Attendance :" + " " + studDetailList.get(0).getTodayAttendance());
-//                                    }
+                                    if (studDetailList.get(0).getTodayAttendance().equalsIgnoreCase("")) {
+                                        attendance_txt.setText("Attendance :" + " " + "N/A Today");
+                                    } else {
+                                        attendance_txt.setText("Attendance :" + " " + studDetailList.get(0).getTodayAttendance());
+                                    }
 
                                     if (!Utility.getPref(mContext, "Loginwithother").equalsIgnoreCase("True")) {
                                         if (Utility.getPref(mContext, "RegisterStatus").equalsIgnoreCase("false")) {

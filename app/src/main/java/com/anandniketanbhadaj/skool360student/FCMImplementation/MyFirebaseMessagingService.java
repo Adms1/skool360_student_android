@@ -11,8 +11,9 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
 import com.anandniketanbhadaj.skool360student.R;
-import com.anandniketanbhadaj.skool360student.Activities.SplashScreenActivity;
+import com.anandniketanbhadaj.skool360student.Utility.Utility;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -93,8 +94,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(RemoteMessage remoteMessage) {
         notifyID = (int) (System.currentTimeMillis() & 0xfffffff);
 
-        Intent notificationIntent = new Intent(ctx,SplashScreenActivity.class);
-
+        Intent notificationIntent = new Intent(ctx, DashBoardActivity.class);
 
         String data = String.valueOf(remoteMessage.getData());
 //
@@ -106,18 +106,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //            e.printStackTrace();
 //        }
 
+        Utility.setPref(ctx, "studid", remoteMessage.getData().get("StudentId"));
+
         notificationIntent.putExtra("fromNotification",remoteMessage.getData().get("type"));
         if(remoteMessage.getData().get("type").equalsIgnoreCase("Birthday")){
             notificationIntent.putExtra("Name",remoteMessage.getData().get("Name"));
         }
+//        else if(remoteMessage.getData().get("type").equalsIgnoreCase("Announcement")){
+//
+//        }
 
         notificationIntent.putExtra("message",remoteMessage.getData().get("body"));//remoteMessage.getNotification().getBody());
         notificationIntent.putExtra("cometonotification","true");
         Log.d("Messsagetype", String.valueOf(remoteMessage.getData()));
 
         notificationIntent.setAction(String.valueOf(notifyID));
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
+//        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingNotificationIntent = PendingIntent.getActivity(ctx, notifyID, notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationManager notificationManager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -126,8 +131,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setTicker(String.valueOf(remoteMessage.getData().get("body")))
                 .setWhen(System.currentTimeMillis())
-                .setContentTitle("Skool 360 Bhadaj")//Bhadaj
-                .setContentText(remoteMessage.getData().get("body"))//remoteMessage.getNotification().getBody()
+                .setContentTitle("Skool 360")//Bhadaj
+                .setContentText(remoteMessage.getData().get("body") + " from " + remoteMessage.getData().get("Name"))//remoteMessage.getNotification().getBody()
                 .setContentIntent(pendingNotificationIntent)
                 .setAutoCancel(true).build();
 

@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Interfacess.onViewClick;
 import com.anandniketanbhadaj.skool360student.Models.Suggestion.SuggestionInboxModel;
+import com.anandniketanbhadaj.skool360student.R;
 
 import java.util.ArrayList;
 
@@ -41,6 +41,8 @@ public class PaymentListAdapter extends RecyclerView.Adapter<PaymentListAdapter.
         holder.term_txt.setText(paymentLedgerModels.getFinalArray().get(position).getTerm());
         holder.amount_txt.setText("₹ " + Math.round(Float.parseFloat(String.valueOf(paymentLedgerModels.getFinalArray().get(position).getAmount()))));
 
+        holder.view_txt.setTextColor(context.getResources().getColor(R.color.light_blue));
+
         holder.view_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,11 +69,11 @@ public class PaymentListAdapter extends RecyclerView.Adapter<PaymentListAdapter.
         public MyViewHolder(View itemView) {
             super(itemView);
           //  index_txt = (TextView) itemView.findViewById(R.id.index_txt);
-            payment_type_txt = (TextView) itemView.findViewById(R.id.payment_type_txt);
-            date_txt = (TextView) itemView.findViewById(R.id.date_txt);
-            term_txt = (TextView) itemView.findViewById(R.id.term_txt);
-            amount_txt = (TextView) itemView.findViewById(R.id.amount_txt);
-            view_txt = (TextView) itemView.findViewById(R.id.view_txt);
+            payment_type_txt = itemView.findViewById(R.id.payment_type_txt);
+            date_txt = itemView.findViewById(R.id.date_txt);
+            term_txt = itemView.findViewById(R.id.term_txt);
+            amount_txt = itemView.findViewById(R.id.amount_txt);
+            view_txt = itemView.findViewById(R.id.view_txt);
         }
     }
 }

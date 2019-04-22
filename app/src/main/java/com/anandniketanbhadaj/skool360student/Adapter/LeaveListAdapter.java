@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Models.ExamSyllabus.ExamModel;
+import com.anandniketanbhadaj.skool360student.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -68,17 +68,29 @@ public class LeaveListAdapter extends RecyclerView.Adapter<LeaveListAdapter.MyVi
 
         if (arrayList.getFinalArray().get(position).getReason().length() >= 17 && arrayList.getFinalArray().get(position).getReason().length() <= 32) {
             holder.reason_txt.setText(arrayList.getFinalArray().get(position).getReason());
-            holder.start_date_txt.setText(StartTimeStr + " - " + EndDateTimeStr+"\n");
+            if (StartTimeStr.equalsIgnoreCase(EndDateTimeStr)) {
+                holder.start_date_txt.setText(StartTimeStr + "\n");
+            } else {
+                holder.start_date_txt.setText(StartTimeStr + " - " + EndDateTimeStr + "\n");
+            }
             holder.srno_txt.setText(str+"\n");
             holder.status_txt.setText(arrayList.getFinalArray().get(position).getStatus()+"\n");
         } else if (arrayList.getFinalArray().get(position).getReason().length() >= 32) {
             holder.reason_txt.setText(arrayList.getFinalArray().get(position).getReason());
-            holder.start_date_txt.setText(StartTimeStr + " - " + EndDateTimeStr+"\n"+"\n");
+            if (StartTimeStr.equalsIgnoreCase(EndDateTimeStr)) {
+                holder.start_date_txt.setText(StartTimeStr + "\n" + "\n");
+            } else {
+                holder.start_date_txt.setText(StartTimeStr + " - " + EndDateTimeStr + "\n" + "\n");
+            }
             holder.srno_txt.setText(str+"\n"+"\n");
             holder.status_txt.setText(arrayList.getFinalArray().get(position).getStatus()+"\n"+"\n");
         } else {
             holder.reason_txt.setText(arrayList.getFinalArray().get(position).getReason());
-            holder.start_date_txt.setText(StartTimeStr + " - " + EndDateTimeStr);
+            if (StartTimeStr.equalsIgnoreCase(EndDateTimeStr)) {
+                holder.start_date_txt.setText(StartTimeStr);
+            } else {
+                holder.start_date_txt.setText(StartTimeStr + " - " + EndDateTimeStr);
+            }
             holder.srno_txt.setText(str);
             holder.status_txt.setText(arrayList.getFinalArray().get(position).getStatus());
         }
@@ -96,10 +108,10 @@ public class LeaveListAdapter extends RecyclerView.Adapter<LeaveListAdapter.MyVi
 
         public MyViewHolder(View view) {
             super(view);
-            srno_txt = (TextView) view.findViewById(R.id.srno_txt);
-            start_date_txt = (TextView) view.findViewById(R.id.start_date_txt);
-            reason_txt = (TextView) view.findViewById(R.id.reason_txt);
-            status_txt = (TextView) view.findViewById(R.id.status_txt);
+            srno_txt = view.findViewById(R.id.srno_txt);
+            start_date_txt = view.findViewById(R.id.start_date_txt);
+            reason_txt = view.findViewById(R.id.reason_txt);
+            status_txt = view.findViewById(R.id.status_txt);
         }
     }
 }

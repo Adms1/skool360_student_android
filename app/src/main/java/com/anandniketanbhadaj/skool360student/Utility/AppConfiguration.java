@@ -8,10 +8,10 @@ import com.anandniketanbhadaj.skool360student.Activities.MyApp;
 public class AppConfiguration {
 
     //Local
-    public static String DOMAIN_LOCAL = "http://192.168.1.13:8089/MobileApp_Service.asmx/";
+    public static String DOMAIN_LOCAL = "http://192.168.1.14:8089/MobileApp_Service.asmx/";
     public static String GET_API_URL = "http://anandniketanbhadaj.org/appService/5b9a72856992e144c74fc836ed6e76a2/appsUrl";
 
-    public static String LIVE_BASE_URL = "http://192.168.1.13:8089/";
+    public static String LIVE_BASE_URL = "http://192.168.1.14:8089/";
 
     // public static String DOMAIN_LIVE = "http://192.168.1.11:8086/MobileApp_Service.asmx/";//use for office only
 //   public static String DOMAIN_LIVE = "http://192.168.1.187:8089/MobileApp_Service.asmx/";//client for office only
@@ -117,9 +117,9 @@ public class AppConfiguration {
 
                 url = DOMAIN_LOCAL + methodName;
 
-                IMAGE_LIVE = "http://192.168.1.13:8089/SKOOL360-Category-Images/Student/";
+                IMAGE_LIVE = "http://192.168.1.14:8089/SKOOL360-Category-Images/Student/";
 //
-                GALLARY_LIVE = "http://192.168.1.13:8089/";
+                GALLARY_LIVE = "http://192.168.1.14:8089/";
 
                 break;
             default:

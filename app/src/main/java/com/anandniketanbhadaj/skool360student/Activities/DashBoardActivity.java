@@ -27,8 +27,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.Fragments.PaymentFragment;
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Adapter.menuoptionItemAdapter;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.DeleteDeviceDetailAsyncTask;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.GetUserProfileAsyncTask;
@@ -42,6 +40,7 @@ import com.anandniketanbhadaj.skool360student.Fragments.GalleryFragment;
 import com.anandniketanbhadaj.skool360student.Fragments.HolidayFragment;
 import com.anandniketanbhadaj.skool360student.Fragments.HomeFragment;
 import com.anandniketanbhadaj.skool360student.Fragments.HomeworkFragment;
+import com.anandniketanbhadaj.skool360student.Fragments.PaymentFragment;
 import com.anandniketanbhadaj.skool360student.Fragments.ProfileFragment;
 import com.anandniketanbhadaj.skool360student.Fragments.ReportCardFragment;
 import com.anandniketanbhadaj.skool360student.Fragments.ResultFragment;
@@ -49,8 +48,10 @@ import com.anandniketanbhadaj.skool360student.Fragments.ShowLeaveFragment;
 import com.anandniketanbhadaj.skool360student.Fragments.SuggestionMainFragment;
 import com.anandniketanbhadaj.skool360student.Fragments.TimeTableFragment;
 import com.anandniketanbhadaj.skool360student.Models.ExamSyllabus.CreateLeaveModel;
+import com.anandniketanbhadaj.skool360student.Models.ShowBirthdayWish;
 import com.anandniketanbhadaj.skool360student.Models.StudProfileModel;
 import com.anandniketanbhadaj.skool360student.Models.menuoptionItem;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.DialogUtils;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
@@ -100,6 +101,7 @@ public class DashBoardActivity extends FragmentActivity {
     private TextView selectChild;
     private String name;
 
+    private ArrayList<ShowBirthdayWish> birthdayWishes;
 
     public static void onLeft() {
         // TODO Auto-generated method stub
@@ -136,6 +138,7 @@ public class DashBoardActivity extends FragmentActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         AppConfiguration.firsttimeback = true;
 
+        Log.d("Dashboard : notificationDefault", "gegeg");
 //        Log.d("Data123", Utility.getPref(mContext, "data"));
 //        Log.d("messagekill", Utility.getPref(mContext, "message"));
 
@@ -156,10 +159,14 @@ public class DashBoardActivity extends FragmentActivity {
 //        Log.d("Data",Utility.getPref(mContext,"data"));
 //        Log.d("message",Utility.getPref(mContext,"message"));
 
+//        birthdayWishes = Utility.loadArray(DashBoardActivity.this, "showbirthday");
+
         try {
             name = getIntent().getStringExtra("Name");
+            Log.d("Dashboard : notificationname", name);
         }catch (Exception ex){
             ex.printStackTrace();
+            Log.d("Dashboard : notificationex", "jjtgnjhgt");
         }
 
         if (getIntent().getStringExtra("message") != null) {
@@ -188,10 +195,20 @@ public class DashBoardActivity extends FragmentActivity {
             }else if(key.equalsIgnoreCase("Birthday")){
                 if (name != null) {
                     if (!TextUtils.isEmpty(name)) {
-                        String fullname = name.replace("|"," ");
+
+//                        for (int i = 0; i < birthdayWishes.size(); i++) {
+//                            if(Utility.getPref(DashBoardActivity.this, "studid").equalsIgnoreCase(birthdayWishes.get(i).getId())){
+//                                birthdayWishes.get(i).setShow(true);
+//                            }
+//
+//                            if(birthdayWishes.get(i).isShow()) {
+                        String fullname = name.replace("|", " ");
                         displayView(0);
                         AppConfiguration.Notification = "0";
-                        DialogUtils.showGIFDialog(DashBoardActivity.this,fullname);
+                        DialogUtils.showGIFDialog(DashBoardActivity.this, fullname);
+//                                birthdayWishes.get(i).setShow(false);
+//                            }
+//                        }
                     }
                 }
 
@@ -648,6 +665,9 @@ public class DashBoardActivity extends FragmentActivity {
                                         Utility.setPref(mContext, "deviceId", "");
                                         Utility.setPref(mContext, "image", "");
                                         Utility.setPref(mContext,"user_birthday","");
+                                        Utility.setPref(mContext, "user_birthday_wish", "0");
+                                        Utility.birthday.clear();
+                                        Utility.setArray(mContext, "birthdayarr", Utility.birthday);
                                         AppConfiguration.UserImage = "";
                                         AppConfiguration.UserName = "";
                                         AppConfiguration.UserGrade = "";

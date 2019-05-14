@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
@@ -21,17 +20,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
 import com.anandniketanbhadaj.skool360student.Activities.Server_Error;
 import com.anandniketanbhadaj.skool360student.Adapter.ListHolidayAdapter;
 import com.anandniketanbhadaj.skool360student.AsyncTasks.GetAttendanceAsyncTask;
 import com.anandniketanbhadaj.skool360student.Models.AttendanceModel;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
 import com.roomorama.caldroid.CaldroidFragment;
@@ -113,7 +111,7 @@ public class AttendanceFragment extends Fragment {
             progressDialog1.show();
 
             if (month < 10) {
-                selectedmonth = "0" + String.valueOf(month);
+                selectedmonth = "0" + month;
             } else {
                 selectedmonth = String.valueOf(month);
             }
@@ -263,9 +261,9 @@ public class AttendanceFragment extends Fragment {
                                         }
                                         for (int i = 0; i < attendanceModels.get(0).getEventsList().size(); i++) {
                                             if (attendanceModels.get(0).getEventsList().get(i).getAttendenceStatus().equalsIgnoreCase("Absent")) {
-                                                hm.put(stringToDate(attendanceModels.get(0).getEventsList().get(i).getAttendanceDate()), new ColorDrawable(getResources().getColor(R.color.attendance_absent_new)));
+                                                hm.put(stringToDate(attendanceModels.get(0).getEventsList().get(i).getAttendanceDate()), new ColorDrawable(getResources().getColor(R.color.absent_bg)));
                                             } else if (attendanceModels.get(0).getEventsList().get(i).getAttendenceStatus().equalsIgnoreCase("Present")) {
-                                                hm.put(stringToDate(attendanceModels.get(0).getEventsList().get(i).getAttendanceDate()), new ColorDrawable(getResources().getColor(R.color.attendance_present_new)));
+                                                hm.put(stringToDate(attendanceModels.get(0).getEventsList().get(i).getAttendanceDate()), new ColorDrawable(getResources().getColor(R.color.present_header)));
                                             } else if (attendanceModels.get(0).getEventsList().get(i).getAttendenceStatus().equalsIgnoreCase("Holiday")) {
                                                 hm.put(stringToDate(attendanceModels.get(0).getEventsList().get(i).getAttendanceDate()), new ColorDrawable(getResources().getColor(R.color.schedule_active)));
                                             }

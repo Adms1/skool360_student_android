@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.Activities.DashBoardActivity;
+import com.anandniketanbhadaj.skool360student.R;
 import com.anandniketanbhadaj.skool360student.SelectChildModel;
 import com.anandniketanbhadaj.skool360student.Utility.AppConfiguration;
 import com.anandniketanbhadaj.skool360student.Utility.Utility;
@@ -47,7 +47,7 @@ public class SelectChildAdapter extends RecyclerView.Adapter<SelectChildAdapter.
             holder.llleft.setVisibility(View.GONE);
             holder.llright.setVisibility(View.VISIBLE);
 
-            Picasso.get().load(AppConfiguration.LIVE_BASE_URL + arrayList.get(position).getStudentimage()).into(holder.proleft);
+            Picasso.get().load(AppConfiguration.LIVE_BASE_URL + arrayList.get(position).getStudentimage()).placeholder(R.drawable.profile_pic_holder).into(holder.proleft);
             holder.graderight.setText(arrayList.get(position).getGradesection());
             holder.nameright.setText(arrayList.get(position).getStudentname());
         }else {

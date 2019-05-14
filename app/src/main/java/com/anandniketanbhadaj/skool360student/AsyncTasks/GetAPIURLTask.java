@@ -28,7 +28,7 @@ public class GetAPIURLTask extends AsyncTask<Void, Void, Boolean> {
         String responseString = null;
         boolean success = false;
         try {
-            responseString = WebServicesCall.RunScript("http://anandniketanbhadaj.org/appService/5b9a72856992e144c74fc836ed6e76a2/appsUrl",0);
+            responseString = WebServicesCall.RunScript("http://admin.skool360.com/", 0);
             success = parseJson(responseString);
         } catch (Exception e) {
             e.printStackTrace();

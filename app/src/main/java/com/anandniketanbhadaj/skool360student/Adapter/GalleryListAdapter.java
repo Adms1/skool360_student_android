@@ -76,7 +76,7 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
         }
 
         if(!image.equals("")) {
-            imageLoader.displayImage(AppConfiguration.GALLARY_LIVE + image, holder.event_image_img);
+            imageLoader.displayImage(AppConfiguration.GALLARY_LIVE + image.substring(1), holder.event_image_img);
             holder.pic_name.setText(name);
         } else {
             imageLoader.displayImage(String.valueOf(R.drawable.gallery_placeholder), holder.event_image_img);

@@ -24,12 +24,12 @@ public class AppConfiguration {
     //  public static String IMAGE_LIVE="http://192.168.1.187:8089/SKOOL360-Category-Images-Android/Student/";
 
     //change by antra - 15/03/2019
-//    public static String IMAGE_LIVE = LIVE_BASE_URL+"SKOOL360-Category-Images-Android/Student/";
-    public static String IMAGE_LIVE = LIVE_BASE_URL + "SKOOL360-Category-Images-Android/Student/";
+    public static String IMAGE_LIVE = "";
+//    public static String IMAGE_LIVE = LIVE_BASE_URL + "SKOOL360-Category-Images-Android/Student/";
 
     // public static String GALLARY_LIVE = "http://192.168.1.11:8086/";
 //  public static String GALLARY_LIVE="http://192.168.1.187:8089/";
-    public static String GALLARY_LIVE = LIVE_BASE_URL;
+    public static String GALLARY_LIVE = "";
 
     //Webservice name
     public static String StudentLogin = "StudentLogin";
